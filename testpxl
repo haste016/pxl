@@ -10,7 +10,7 @@ end
 --game:GetService("Players").LocalPlayer.Backpack.Bag.BagPart.Overhead.ItemName
 
 spawn(function()
-    while wait(2) do
+    while wait(1) do
         if shared.Enabled then
             if game.Players.LocalPlayer.Backpack:FindFirstChild("Bag") then
                 if namecheck(game:GetService("Players").LocalPlayer.Backpack.Bag.BagPart.Overhead.ItemName) then
