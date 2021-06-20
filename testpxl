@@ -1,0 +1,29 @@
+local function namecheck(v)
+    for i,x in pairs(_G.Desired) do
+    if v.Text == tostring(x) then
+        return true
+    end
+    end
+    return false
+end
+
+--game:GetService("Players").LocalPlayer.Backpack.Bag.BagPart.Overhead.ItemName
+
+spawn(function()
+    while wait(5) do
+        if shared.Enabled then
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Bag") then
+                if namecheck(game:GetService("Players").LocalPlayer.Backpack.Bag.BagPart.Overhead.ItemName) then
+                if _G.AutoEquip then
+                game:GetService("ReplicatedStorage").RemoteEvents.ItemRemote:FireServer()
+                end
+                shared.Enabled = false
+                else
+                    game:GetService("ReplicatedStorage").RemoteEvents.ClearInventoryRemote:FireServer()
+                end
+            elseif not game.Players.LocalPlayer.Backpack:FindFirstChild("Bag") then
+                game:GetService("ReplicatedStorage").RemoteEvents.BuyItemRemote:FireServer(_G.Farm)
+            end
+        end
+    end
+end)
